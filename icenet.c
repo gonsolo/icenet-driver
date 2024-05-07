@@ -19,6 +19,7 @@
 
 #include <linux/netdevice.h>
 #include <linux/etherdevice.h>
+#include <linux/platform_device.h>
 
 /* Can't add new CONFIG parameters in an external module, so define them here */
 #define CONFIG_ICENET_MTU 1500
