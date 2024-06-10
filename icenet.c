@@ -144,8 +144,8 @@ static inline void clear_intmask(struct icenet_device *nic, uint32_t mask)
 static inline void post_send_frag(
 		struct icenet_device *nic, skb_frag_t *frag, int last)
 {
-	uintptr_t addr = page_to_phys(frag->bv_page) + frag->bv_offset;
-	uint64_t len = frag->bv_len, partial = !last, packet;
+        uintptr_t addr = page_to_phys(skb_frag_page(frag)) + frag->offset;
+	uint64_t len = frag->len, partial = !last, packet;
 
 	packet = (partial << 63) | (len << 48) | (addr & 0xffffffffffffL);
 	iowrite64(packet, nic->iomem + ICENET_SEND_REQ);
